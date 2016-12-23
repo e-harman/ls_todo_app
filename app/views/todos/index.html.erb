@@ -19,7 +19,13 @@
   <tbody>
     <% @todos.each do |todo| %>
       <tr>
-        <td><%= todo.title %></td>
+        <!-- <td><%= todo.title %></td> -->
+        <td>
+          <span class="has-tooltip" data-toggle="tooltip" title="<%= "Created on #{todo.created_at.strftime("%m/%e/%Y at %w:%M %p")}, Last modified on #{todo.updated_at.strftime("%m/%e/%Y at %w:%M %p")}" %>">
+            <%= todo.title %>
+          </span>
+        </td>
+
         
         <!-- <td><%= todo.notes %></td> -->
         <td>
@@ -46,6 +52,9 @@
 	      </div>
 	    </div>
 	  <% end %>
+	  <% if todo.notes? %>
+            <button type="button" class="btn btn-link has-popover" data-toggle="popover" title="Notes" data-content="<%= todo.notes %>">View notes (popover)</button>
+          <% end %>
         </td>
         
         
